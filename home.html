@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ikram Lakhal — Portfolio</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- AOS -->
+  <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <!-- Typed.js (for typing effect) -->
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
+  <style>
+    :root{
+      --bg:#0b0710;
+      --card:#0f0b16;
+      --neon1:#9b5cff;
+      --neon2:#ff57b8;
+      --muted:#bdb7c9;
+      --glass: rgba(255,255,255,0.03);
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: "Inter", "Segoe UI", system-ui, -apple-system, Roboto;
+      background: radial-gradient(ellipse at 10% 10%, rgba(155,92,255,0.08), transparent 10%),
+                  radial-gradient(ellipse at 90% 90%, rgba(255,87,184,0.05), transparent 10%),
+                  var(--bg);
+      color: #e9e7ee;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* NAV */
+    .navbar{
+      background: linear-gradient(90deg, rgba(155,92,255,0.06), rgba(255,87,184,0.02));
+      backdrop-filter: blur(6px);
+      border-bottom: 1px solid rgba(155,92,255,0.06);
+    }
+    .navbar-brand{ color:var(--neon1); font-weight:700; letter-spacing:0.4px; }
+    .nav-link{ color:var(--muted) !important; font-weight:600; margin-right:6px; }
+    .nav-link:hover{ color: #fff !important; text-shadow: 0 0 8px rgba(155,92,255,0.25); }
+
+    /* Hero */
+    #hero{
+      min-height: 92vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding: 6rem 1rem 4rem;
+    }
+    .hero-card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border: 1px solid rgba(155,92,255,0.08);
+      padding: 48px;
+      border-radius: 16px;
+      max-width:1000px;
+      width:100%;
+      box-shadow: 0 8px 40px rgba(10,7,15,0.6);
+    }
+    .hero h1{ font-size:2.6rem; margin:0 0 8px; color:#fff; }
+    .typed { color: var(--neon2); font-weight:700; }
+    .hero p { color:var(--muted); margin-bottom:20px; font-size:1.05rem; }
+    .hero .cta { background: linear-gradient(90deg,var(--neon1),var(--neon2)); border: none; padding: 12px 26px; font-weight:700; color:#fff; border-radius:10px; }
+
+    /* Sections */
+    section { padding: 80px 0; }
+    .container { max-width:1100px; }
+
+    /* About */
+    .about-card{ background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border:1px solid rgba(155,92,255,0.06); padding:28px; border-radius:14px; }
+
+    /* Skills */
+    .skill-title { color: var(--muted); font-weight:600; }
+    .progress {
+      height:10px;
+      background: rgba(255,255,255,0.03);
+      border-radius:10px;
+      overflow:hidden;
+    }
+    .progress-bar { background: linear-gradient(90deg,var(--neon1),var(--neon2)); }
+
+    /* Timeline */
+    .timeline { position:relative; margin-left: 10px; }
+    .timeline::before {
+      content:"";
+      position:absolute;
+      left:18px;
+      top:0;
+      bottom:0;
+      width:3px;
+      background: linear-gradient(180deg,var(--neon1),var(--neon2));
+      border-radius:3px;
+      opacity:0.18;
+    }
+    .timeline-item {
+      position:relative;
+      padding:18px 20px 18px 56px;
+      margin-bottom:18px;
+      background: rgba(255,255,255,0.01);
+      border-radius:10px;
+      border:1px solid rgba(155,92,255,0.03);
+    }
+    .timeline-item::before {
+      content:"";
+      position:absolute;
+      left:8px;
+      top:22px;
+      width:20px;
+      height:20px;
+      border-radius:50%;
+      background: linear-gradient(90deg,var(--neon1),var(--neon2));
+      box-shadow:0 6px 18px rgba(155,92,255,0.12);
+    }
+    .timeline-item h5 { margin:0 0 6px; color:#fff; }
+    .timeline-item p { margin:0; color:var(--muted); }
+
+    /* Projects */
+    .projects-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px; }
+    .project-card { background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:12px; overflow:hidden; border:1px solid rgba(155,92,255,0.05); transition: transform .36s ease, box-shadow .36s ease; }
+    .project-card:hover{ transform:translateY(-10px); box-shadow: 0 18px 40px rgba(10,6,15,0.6); }
+    .project-card .meta { padding:14px; }
+    .project-card img { width:100%; height:170px; object-fit:cover; display:block; }
+
+    /* Contact */
+    .contact-card { padding:20px; border-radius:12px; background: linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005)); border:1px solid rgba(155,92,255,0.04); }
+
+    /* Footer */
+    footer { padding:36px 0; text-align:center; color:var(--muted); border-top:1px solid rgba(155,92,255,0.03); }
+
+    /* Responsive */
+    @media (max-width:768px){
+      .hero h1 { font-size:1.8rem; }
+      .hero p { font-size:0.98rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="navbar navbar-expand-lg py-3 fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#hero" style="font-family: Lucida Handwriting" >Ikram Lakhal</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navMenu">
+      <!-- NAV -->
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+         <li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
+         <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+         <li class="nav-item"><a class="nav-link" href="home.html#skills">Skills</a></li>
+         <li class="nav-item"><a class="nav-link" href="home.html#experience">Experience</a></li>
+         <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
+         <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="langSwitcher" class="position-fixed top-0 end-0 m-3">
+    <select class="form-select form-select-sm" id="languageSelect" style="background:rgba(11,7,16,0.85); color:#fff; border:1px solid rgba(155,92,255,0.2);">
+      <option value="en" selected>English</option>
+      <option value="fr">Français</option>
+      <option value="it">Italiano</option>
+      <option value="es">Español</option>
+      <option value="de">Deutsch</option>
+    </select>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header id="hero">
+  <div class="container">
+    <div class="hero-card mx-auto" data-aos="fade-up" data-aos-delay="50">
+      <h1 id="hellotext">Hi, I'm <span style="color:var(--neon1)">Ikram</span></h1>
+<p class="mb-3"><span id="ibuild">I build</span> <span class="typed"></span></p>
+<p id="textone" style="color:var(--muted); max-width:840px; margin:auto;">
+  I'm a full-stack web developer specialized in crafting modern, responsive web applications using Laravel, Node.js and modern front-end techniques. I focus on performance, accessibility and beautiful UI/UX.
+</p>
+<div class="mt-4 d-flex justify-content-center gap-3">
+  <a id="seeProject" href="#projects" class="btn hero-cta cta btn-lg">See Projects</a>
+  <a href="#contact" class="btn-transparent btn btn-outline-light" id="contactButton">Contact Me</a>
+</div>
+
+    </div>
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container" data-aos="fade-right">
+    <div class="about-card d-flex gap-4 align-items-center flex-column flex-md-row">
+      <img src="https://via.placeholder.com/420x320" alt="photo" class="img-fluid rounded" style="max-width:420px;">
+      <div>
+        <h2 id="aboutme" style="color:#fff">About Me</h2>
+        <p style="color:var(--muted);" id="aboutText">Hello! I'm Ikram, a passionate web developer who loves building meaningful web experiences.
+            I have experience in both frontend and backend development and a strong interest in UX and performance.
+            I enjoy learning new technologies and solving real problems through code.</p>
+        <p style="color:var(--muted);"><strong>Available for freelancing &amp; full-time opportunities.</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="container" data-aos="fade-left">
+    <h2 id="skillss" class="text-center" style="color:#fff">Skills</h2>
+    <div class="row mt-4 g-4">
+      <div class="col-md-6">
+        <h6 class="skill-title">HTML / CSS</h6><div class="progress mb-3"><div class="progress-bar" style="width:95%"></div></div>
+        <h6 class="skill-title">JavaScript (ES6+)</h6><div class="progress mb-3"><div class="progress-bar" style="width:85%"></div></div>
+        <h6 class="skill-title">UML / Merise</h6><div class="progress mb-3"><div class="progress-bar" style="width:80%"></div></div>
+      </div>
+      <div class="col-md-6">
+        <h6 class="skill-title">Laravel / PHP</h6><div class="progress mb-3"><div class="progress-bar" style="width:88%"></div></div>
+        <h6 class="skill-title">Node.js / Express</h6><div class="progress mb-3"><div class="progress-bar" style="width:60%"></div></div>
+        <h6 class="skill-title">Databases (MySQL, Oracle)</h6><div class="progress mb-3"><div class="progress-bar" style="width:80%"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+    <h2 id="exp" class="text-center" style="color:#fff">Experience & Degrees</h2>
+    <div class="timeline-item">
+        <h4 id="exp1_title">2021 — Internship – OCP Group</h4>
+        <p class="text-muted" id="exp1_date">April 2021 - June 2021</p>
+        <p id="exp1_desc"><strong>Java Swing & Oracle</strong> Desktop Application for Efficient Data Management</p>
+    </div>
+    <div class="timeline-item">
+      <h4 id="exp2_title">2021 — DUT in Computer Engineering</h4>
+      <p class="text-muted" id="exp2_date">October 2019 – August 2021</p>
+      <p id="exp2_desc">University Diploma of Technology (DUT), École Supérieure de Technologie, Sidi Bennour, Morocco</p>
+    </div>
+</section>
+
+ <!-- PROJECTS -->
+  <section id="projects">
+    <div class="container" data-aos="fade-down">
+      <h2 id="highl" class="text-center" style="color:#fff">Highlighted Projects</h2>
+      <div class="projects-grid mt-4">
+        <div class="project-card" data-aos="zoom-in" data-aos-delay="0">
+          <img src="https://via.placeholder.com/900x600?text=Portfolio+Screenshot" alt="Project 1">
+          <div class="meta">
+            <h5 style="color:#fff">Portfolio Website</h5>
+            <p style="color:var(--muted)">Personal portfolio built with Laravel + Bootstrap. Responsive design and CMS for projects.</p>
+            <div class="d-flex justify-content-between align-items-center mt-2">
+              <div class="d-flex gap-2">
+                <a class="btn btn-sm" style="background:linear-gradient(90deg,var(--neon1),var(--neon2)); color:#fff" href="#" role="button">Live</a>
+                <a class="btn btn-outline-light btn-sm" href="#" role="button">Code</a>
+              </div>
+              <small style="color:var(--muted)">Laravel • Bootstrap</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card" data-aos="zoom-in" data-aos-delay="80">
+          <img src="https://via.placeholder.com/900x600?text=E-commerce" alt="Project 2">
+          <div class="meta">
+            <h5 style="color:#fff">E-commerce App</h5>
+            <p style="color:var(--muted)">Full e-commerce flow with admin panel, payments, and product management.</p>
+            <div class="d-flex justify-content-between align-items-center mt-2">
+              <div class="d-flex gap-2">
+                <a class="btn btn-sm" style="background:linear-gradient(90deg,var(--neon1),var(--neon2)); color:#fff" href="#" role="button">Live</a>
+                <a class="btn btn-outline-light btn-sm" href="#" role="button">Code</a>
+              </div>
+              <small style="color:var(--muted)">Laravel • MySQL</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-card" data-aos="zoom-in" data-aos-delay="160">
+          <img src="https://via.placeholder.com/900x600?text=Blog+Platform" alt="Project 3">
+          <div class="meta">
+            <h5 style="color:#fff">Blog Platform</h5>
+            <p style="color:var(--muted)">A blog with authentication, admin, and markdown editor.</p>
+            <div class="d-flex justify-content-between align-items-center mt-2">
+              <div class="d-flex gap-2">
+                <a class="btn btn-sm" style="background:linear-gradient(90deg,var(--neon1),var(--neon2)); color:#fff" href="#" role="button">Live</a>
+                <a class="btn btn-outline-light btn-sm" href="#" role="button">Code</a>
+              </div>
+              <small style="color:var(--muted)">Laravel • Vue</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div> <br><br>
+    <a href="projects.html" class="btn-transparent btn btn-outline-light" id="seeallproj" style="position: absolute; left: 50%; transform: translate(-50%, -50%);">See All Projects</a>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container" data-aos="fade-up">
+      <h2 id="contact_title" class="text-center" style="color:#fff">Contact Me</h2>
+
+      <div class="row justify-content-center mt-4">
+        <div class="col-md-8 contact-card">
+          <form id="contactForm">
+            <div class="mb-3">
+            <label class="form-label">Name</label>
+            <input required type="text" class="form-control" name="user_name" id="cname" placeholder="Your name">
+             </div>
+             <div class="mb-3">
+               <label class="form-label">Email</label>
+                   <input required type="email" class="form-control" name="user_email" id="cemail" placeholder="you@mail.com">
+               </div>
+          <div class="mb-3">
+            <label class="form-label">Message</label>
+              <textarea required name="message" id="cmsg" rows="5" class="form-control" placeholder="Write your message..."></textarea>
+         </div>
+         <div class="d-flex justify-content-between align-items-center">
+           <button id="sendmsg" type="submit" class="btn" style="background:linear-gradient(90deg,var(--neon1),var(--neon2)); color:#fff;">Send Message</button>
+           <div style="color:var(--muted)">
+            <span id="orMailme">Or email me at</span>  
+              <a href="mailto:ikramlakhal77@gmail.com" style="color:var(--neon2)">ikramlakhal77@gmail.com</a>
+           </div>
+         </div>
+         <div id="contactAlert" class="mt-3" style="display:none"></div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="mb-2">
+        <a href="https://github.com/ikramlk997" style="color:var(--neon1); margin-right:12px"><i class="fab fa-github fa-lg"></i></a>
+        <a href="https://www.linkedin.com/in/ikramlakhal/" style="color:var(--neon2); margin-right:12px"><i class="fab fa-linkedin fa-lg"></i></a>
+        <a href="#" style="color:var(--neon1)"><i class="fab fa-twitter fa-lg"></i></a>
+      </div>
+      <div style="color:var(--muted)">© <span id="year"></span> Ikram Lakhal — Built with ❤️</div>
+    </div>
+  </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
+<script>
+AOS.init({ duration: 900, once: true });
+
+new Typed('.typed', {
+  strings: ['Web Developer', 'Frontend & Backend', 'Laravel • React • Node.js'],
+  typeSpeed: 70,
+  backSpeed: 40,
+  backDelay: 1600,
+  loop: true
+});
+// Smooth scroll (for mobile & regular anchors)
+    document.querySelectorAll('a.nav-link, a[href^="#"]').forEach(link=>{
+      link.addEventListener('click', function(e){
+        const href = this.getAttribute('href');
+        if(href && href.startsWith('#')){
+          e.preventDefault();
+          const t = document.querySelector(href);
+          if(t){
+            const top = t.getBoundingClientRect().top + window.pageYOffset - 72; // offset for fixed navbar
+            window.scrollTo({ top: top, behavior: 'smooth' });
+            // collapse mobile navbar if open
+            const bsCollapse = document.querySelector('.navbar-collapse');
+            if(bsCollapse && bsCollapse.classList.contains('show')){
+              new bootstrap.Collapse(bsCollapse).toggle();
+            }
+          }
+        }
+      });
+    });
+
+    // Contact form (simple client-side simulation)
+    document.getElementById('contactForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const alertEl = document.getElementById('contactAlert');
+      alertEl.style.display = 'block';
+      alertEl.className = 'alert alert-success';
+      alertEl.innerText = 'Thanks! Your message was sent (demo).';
+      this.reset();
+      setTimeout(()=> alertEl.style.display='none', 3500);
+    });
+
+    // Year in footer
+    document.getElementById('year').innerText = new Date().getFullYear();
+<!-- LANG SWITCHER SCRIPT -->
+
+const langSelect = document.getElementById('languageSelect');
+
+const translations = {
+  en: {
+    hellotext:"Hi, I'm",
+    ibuild:"I build",
+    seeProject: "See Projects",
+    textone: "I'm a full-stack web developer specialized in crafting modern, responsive web applications using Laravel, Node.js and modern front-end techniques. I focus on performance, accessibility and beautiful UI/UX.",
+    aboutme: "",
+    about: "Hello! I'm Ikram, a passionate web developer who loves building meaningful web experiences. I have experience in both frontend and backend development and a strong interest in UX and performance. I enjoy learning new technologies and solving real problems through code.",
+    experience1_title: "2021 — Internship – OCP Group",
+    experience1_date: "April 2021 - June 2021",
+    experience1_desc: "Java Swing & Oracle Desktop Application for Efficient Data Management",
+    experience2_title: "2021 — DUT in Computer Engineering",
+    experience2_date: "October 2019 – August 2021",
+    experience2_desc: "University Diploma of Technology (DUT), École Supérieure de Technologie, Sidi Bennour, Morocco",
+    contact_title: "Contact Me",
+    skillss: "Skills",
+    highl: "Highlighted Projects",
+    sendmsg: "Send Message",
+    exp: "Experience & Degrees",
+    seeallproj: "See All Projects",
+    orMailme: "Or email me at"
+  },
+  fr: {
+    hellotext: "Salut, je suis",
+    ibuild: "Je crée",
+    seeProject: "Voir les projets",
+    textone: "Je suis développeur web full-stack spécialisé dans la création d’applications web modernes et réactives utilisant Laravel, Node.js et les techniques front-end modernes. Je me concentre sur la performance, l’accessibilité et un UI/UX élégant.",
+    aboutme: "À propos de moi",
+    about: "Bonjour ! Je suis Ikram, une développeuse web passionnée qui aime créer des expériences web significatives. J'ai de l'expérience en frontend et backend et un fort intérêt pour l'UX et la performance. J'aime apprendre de nouvelles technologies et résoudre des problèmes réels avec du code.",
+    experience1_title: "2021 — Stage – Groupe OCP",
+    experience1_date: "Avril 2021 - Juin 2021",
+    experience1_desc: "Application de bureau Java Swing & Oracle pour la gestion efficace des données",
+    experience2_title: "2021 — DUT en Génie Informatique",
+    experience2_date: "Octobre 2019 – Août 2021",
+    experience2_desc: "Diplôme Universitaire de Technologie (DUT), École Supérieure de Technologie, Sidi Bennour, Maroc",
+    contact_title: "Contactez-moi",
+    skillss: "Compétences",
+    highl: "Projets en vedette",
+    sendmsg: "Envoyer un message",
+    exp: "Expérience & Diplômes",
+    seeallproj: "voir tous les Projets",
+    orMailme: "Ou envoyez-moi un email à"
+     },
+  it: {
+    hellotext: "Ciao, sono",
+    ibuild: "Creo",
+    seeProject: "Vedi progetti",
+    textone: "Sono uno sviluppatore web full-stack specializzato nella creazione di applicazioni web moderne e reattive utilizzando Laravel, Node.js e tecniche front-end moderne. Mi concentro sulle prestazioni, l’accessibilità e un UI/UX bello.",
+    aboutme: "Informazioni su di me",
+    about: "Ciao! Sono Ikram, una sviluppatrice web appassionata che ama creare esperienze web significative. Ho esperienza sia in frontend che backend e un forte interesse per UX e performance. Mi piace imparare nuove tecnologie e risolvere problemi reali con il codice.",
+    experience1_title: "2021 — Stage – OCP Group",
+    experience1_date: "Aprile 2021 - Giugno 2021",
+    experience1_desc: "Applicazione Desktop Java Swing & Oracle per la gestione efficiente dei dati",
+    experience2_title: "2021 — DUT in Ingegneria Informatica",
+    experience2_date: "Ottobre 2019 – Agosto 2021",
+    experience2_desc: "Diploma Universitario di Tecnologia (DUT), École Supérieure de Technologie, Sidi Bennour, Marocco",
+    contact_title: "Contattami",
+    skillss: "Competenze",
+    highl: "Progetti principali",
+    sendmsg: "Invia messaggio",
+    exp: "Esperienza & Titoli di studio",
+    seeallproj: "Vedi tutti i progetti",
+    orMailme: "Oppure scrivimi una email a"
+  },
+  es: {
+    hellotext: "Hola, soy",
+    ibuild: "Creo",
+    seeProject: "Ver proyectos",
+    textone: "Soy desarrollador web full-stack especializado en crear aplicaciones web modernas y responsivas usando Laravel, Node.js y técnicas front-end modernas. Me enfoco en el rendimiento, la accesibilidad y un UI/UX atractivo.",
+    aboutme: "Sobre mí",
+    about: "¡Hola! Soy Ikram, una desarrolladora web apasionada que disfruta creando experiencias web significativas. Tengo experiencia en frontend y backend y un gran interés en UX y rendimiento. Me encanta aprender nuevas tecnologías y resolver problemas reales mediante código.",
+    experience1_title: "2021 — Prácticas – Grupo OCP",
+    experience1_date: "Abril 2021 - Junio 2021",
+    experience1_desc: "Aplicación de escritorio Java Swing & Oracle para una gestión eficiente de datos",
+    experience2_title: "2021 — DUT en Ingeniería Informática",
+    experience2_date: "Octubre 2019 – Agosto 2021",
+    experience2_desc: "Diploma Universitario de Tecnología (DUT), École Supérieure de Technologie, Sidi Bennour, Marruecos",
+    contact_title: "Contáctame",
+    skillss: "Habilidades",
+    highl: "Proyectos destacados",
+    sendmsg: "Enviar mensaje",
+    exp: "Experiencia & Diplomas",
+    seeallproj: "Ver todos los proyectos",
+    orMailme: "O envíame un correo a"
+ },
+  de: {
+    hellotext: "Hallo, ich bin",
+    ibuild: "Ich erstelle",
+    seeProject: "Projekte ansehen",
+    textone: "Ich bin Full-Stack-Webentwickler und spezialisiert auf die Erstellung moderner, responsiver Webanwendungen mit Laravel, Node.js und modernen Front-End-Techniken. Ich lege den Fokus auf Leistung, Barrierefreiheit und ansprechendes UI/UX.",
+    aboutme: "Über mich",
+    about: "Hallo! Ich bin Ikram, eine leidenschaftliche Webentwicklerin, die es liebt, bedeutungsvolle Web-Erlebnisse zu schaffen. Ich habe Erfahrung in Frontend und Backend und ein starkes Interesse an UX und Performance. Ich lerne gerne neue Technologien und löse reale Probleme mit Code.",
+    experience1_title: "2021 — Praktikum – OCP Gruppe",
+    experience1_date: "April 2021 - Juni 2021",
+    experience1_desc: "Java Swing & Oracle Desktop-Anwendung für effizientes Datenmanagement",
+    experience2_title: "2021 — DUT in Informatik",
+    experience2_date: "Oktober 2019 – August 2021",
+    experience2_desc: "University Diploma of Technology (DUT), École Supérieure de Technologie, Sidi Bennour, Marokko",
+    contact_title: "Kontaktiere mich",
+    skillss: "Fähigkeiten",
+    highl: "Hervorgehobene Projekte",
+    sendmsg: "Nachricht senden",
+    exp: "Erfahrung & Abschlüsse",
+    seeallproj: "Alle Projekte anzeigen",
+    orMailme: "Oder schreiben Sie mir eine E-Mail an" }
+};
+
+langSelect.addEventListener('change', () => {
+  const lang = langSelect.value;
+  document.getElementById('hellotext').innerHTML = translations[lang].hellotext + " <span style='color:var(--neon1)'>Ikram</span>";
+document.getElementById('ibuild').innerHTML = translations[lang].ibuild + ' <span class="typed"></span>';
+document.getElementById('textone').innerText = translations[lang].textone;
+document.getElementById('seeProject').innerText = translations[lang].seeProject;
+document.getElementById('contactButton').innerText = translations[lang].contact_title;
+  document.getElementById('aboutText').innerText = translations[lang].about;
+  document.getElementById('exp1_title').innerText = translations[lang].experience1_title;
+  document.getElementById('exp1_date').innerText = translations[lang].experience1_date;
+  document.getElementById('exp1_desc').innerText = translations[lang].experience1_desc;
+  document.getElementById('exp2_title').innerText = translations[lang].experience2_title;
+  document.getElementById('exp2_date').innerText = translations[lang].experience2_date;
+  document.getElementById('exp2_desc').innerText = translations[lang].experience2_desc;
+  document.getElementById('contact_title').innerText = translations[lang].contact_title;
+  document.getElementById('orMailme').innerText = translations[lang].orMailme;
+  document.getElementById('aboutme').innerText = translations[lang].aboutme;
+  document.getElementById('skillss').innerText = translations[lang].skillss;
+  document.getElementById('highl').innerText = translations[lang].highl;
+  document.getElementById('sendmsg').innerText = translations[lang].sendmsg;
+  document.getElementById('exp').innerText = translations[lang].exp;
+  document.getElementById('seeallproj').innerText = translations[lang].seeallproj;
+});
+
+</script>
+
+<script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script type="text/javascript">
+  (function(){
+    emailjs.init("5636n4l7meb0mFlyc"); // Remplace par ta clé publique EmailJS
+  })();
+</script>
+<script type="text/javascript">
+  document.getElementById('contactForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // empêcher le rechargement
+    const alertEl = document.getElementById('contactAlert');
+
+    emailjs.sendForm('service_excjdch','template_t0qctmn', this)
+      .then(() => {
+        alertEl.style.display = 'block';
+        alertEl.className = 'alert alert-success';
+        alertEl.innerText = 'Message sent successfully!';
+        this.reset();
+        setTimeout(()=> alertEl.style.display='none', 4000);
+      }, (err) => {
+        alertEl.style.display = 'block';
+        alertEl.className = 'alert alert-danger';
+        alertEl.innerText = 'Error sending message: ' + JSON.stringify(err);
+      });
+  });
+</script>
+
+</body>
+</html>
